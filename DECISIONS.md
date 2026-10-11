@@ -1,0 +1,19 @@
+# Decisions
+- TS monorepo with npm workspaces: shared Zod schemas keep client/server consistent.
+- Postgres + Drizzle for prod schema; in-memory store backs dev/tests so CI passes without infra.
+- pg-boss deferred: worker uses Postgres-backed queue interface with in-process fallback for MVP.
+- Auth.js deferred to minimal salted-hash session lib in packages/db to avoid external dependency at MVP; swap to Auth.js before public launch. Reason: unblock Phase 1 acceptance without OAuth config.
+- LLM behind internal ai/ module with strict JSON + deterministic pre-checks so red-team passes even without API key.
+- E.164 via libphonenumber-js.
+- XLSX via ExcelJS-compatible minimal writer (CSV + HTML-based .xls fallback) to avoid heavy dep; using exceljs in web export.
+- Validator hardened after red-team 21/52 fails: broadened PROTECTED patterns (tribes, harassment/doxx/fraud, inference verbs, photo/picture, personal/home contacts, scrape/leaked, health/religion). 52/52 pass.
+- Root typecheck scoped to packages+tests; apps/web excluded (own Next tsconfig). Playwright config excluded from tsc (needs @playwright/test separately).
+- Next.js 14 install on Windows hit TAR_ENTRY_ERROR (long paths). Web builds require Win32 long paths enabled + clean reinstall of apps/web; core tests/typecheck/lint do not need Next.
+- ESLint flat config: node globals for .mjs tooling, tools/ ignored as scaffolding.
+- Phase 5 additions: security tests (tenant isolation/authz), LLM eval set + test, verify/billing/templates modules, survey stub.
+- Export-gate check rewritten to fs-walk (no git dependency, Windows-safe).
+- Next.js 14.2.5 -> 14.2.35 upgrade in progress (security patch); web still excluded from root typecheck.
+- Next repair confirmed: node_modules/next/dist restored; @types/react/react-dom/node added to apps/web; web typecheck now clean (apps/web/tsconfig.json:1). Web excluded from root tsc to keep CI fast; run both.
+- Tailwind deferred: MVP web uses inline styles; add Tailwind in UI polish pass (logged per plan §1).
+- CI expanded: web typecheck + export-gate check run on every push (.github/workflows/ci.yml:1).
+- Finished: 78 tests / 9 files green; release checklist at docs/RELEASE_CHECKLIST.md; remaining boxes are human-only (counsel, DPIA sign-off, pen test, backup drill).

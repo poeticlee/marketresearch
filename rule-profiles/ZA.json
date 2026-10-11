@@ -1,0 +1,19 @@
+{
+  "id": "za-v1",
+  "jurisdiction": "ZA",
+  "version": "1.0.0",
+  "lawful_basis_guidance": "South Africa profile placeholder — local counsel review required.",
+  "individual_email_outreach": "consent_required",
+  "corporate_email_outreach": "seek advice",
+  "phone_outreach_guidance": "seek advice",
+  "required_notices": [
+    "Counsel review pending"
+  ],
+  "default_retention_days": 90,
+  "special_category_warning": "No sensitive-trait inference",
+  "blocked_query_types": [
+    "individual-ethnicity",
+    "stalking"
+  ],
+  "needs_review": true
+}

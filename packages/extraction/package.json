@@ -1,0 +1,9 @@
+{
+  "name": "@gcrp/extraction",
+  "version": "0.1.0",
+  "dependencies": {
+    "zod": "^3.23.8",
+    "libphonenumber-js": "^1.11.1",
+    "@gcrp/core": "*"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "gb-v1",
+  "jurisdiction": "GB",
+  "version": "1.0.0",
+  "lawful_basis_guidance": "UK GDPR + PECR: B2B email to corporate subscribers allowed with opt-out; individual emails need consent.",
+  "individual_email_outreach": "consent_required",
+  "corporate_email_outreach": "allowed with opt-out",
+  "phone_outreach_guidance": "PECR/TPS check for calls",
+  "required_notices": [
+    "ICO-compliant privacy info; unsubscribe; sender identity"
+  ],
+  "default_retention_days": 180,
+  "special_category_warning": "Special-category data prohibited",
+  "blocked_query_types": [
+    "individual-ethnicity",
+    "stalking",
+    "political-targeting"
+  ],
+  "needs_review": true
+}

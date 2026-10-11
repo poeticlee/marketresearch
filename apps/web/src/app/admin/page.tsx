@@ -1,0 +1,1 @@
+export default function Admin(){ return (<div><h2>Admin console</h2><ul><li>Sources enable/disable</li><li>Rule profiles with needs_review flags</li><li>Abuse queue (flagged briefs)</li><li>User suspension</li></ul><p>See /api/admin/* routes.</p></div>); }

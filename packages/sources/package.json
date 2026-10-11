@@ -1,0 +1,9 @@
+{
+  "name": "@gcrp/sources",
+  "version": "0.1.0",
+  "dependencies": {
+    "zod": "^3.23.8",
+    "@gcrp/core": "*",
+    "@gcrp/extraction": "*"
+  }
+}

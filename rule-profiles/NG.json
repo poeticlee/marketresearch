@@ -1,0 +1,20 @@
+{
+  "id": "ng-v1",
+  "jurisdiction": "NG",
+  "version": "1.0.0",
+  "lawful_basis_guidance": "NDPA 2023: consent or legitimate interest with notice; register with NDPC where required.",
+  "individual_email_outreach": "consent_required",
+  "corporate_email_outreach": "B2B with opt-out and identification",
+  "phone_outreach_guidance": "NCC rules: no bulk SMS without consent/Do-Not-Disturb respect",
+  "required_notices": [
+    "Identify sender; honour opt-out within 48h; NDPA privacy notice"
+  ],
+  "default_retention_days": 180,
+  "special_category_warning": "Never infer ethnicity/religion/gender",
+  "blocked_query_types": [
+    "individual-ethnicity",
+    "stalking",
+    "political-targeting"
+  ],
+  "needs_review": true
+}

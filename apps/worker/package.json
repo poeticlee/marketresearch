@@ -1,0 +1,10 @@
+{
+  "name": "@gcrp/worker",
+  "version": "0.1.0",
+  "dependencies": {
+    "@gcrp/db": "*",
+    "@gcrp/compliance": "*",
+    "@gcrp/sources": "*",
+    "@gcrp/extraction": "*"
+  }
+}

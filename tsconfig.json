@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@gcrp/core": ["packages/core/src/index.ts"],
+      "@gcrp/compliance": ["packages/compliance/src/index.ts"],
+      "@gcrp/db": ["packages/db/src/store.ts"],
+      "@gcrp/extraction": ["packages/extraction/src/index.ts"],
+      "@gcrp/sources": ["packages/sources/src/index.ts"],
+      "@gcrp/ai": ["packages/ai/src/index.ts"],
+      "@core/*": ["packages/core/src/*"],
+      "@compliance/*": ["packages/compliance/src/*"],
+      "@sources/*": ["packages/sources/src/*"],
+      "@extraction/*": ["packages/extraction/src/*"],
+      "@ai/*": ["packages/ai/src/*"],
+      "@db/*": ["packages/db/src/*"]
+    },
+    "types": ["node"]
+  },
+  "include": ["packages/**/src/**/*.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", "**/dist/**", "**/.next/**", "apps/**", "tests/e2e/playwright.config.ts"]
+}

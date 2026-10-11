@@ -1,0 +1,1 @@
+export default function RootLayout({children}:{children:React.ReactNode}){ return (<html><body style={{fontFamily:'system-ui',margin:0}}><header style={{padding:12,borderBottom:'1px solid #ddd'}}><b>Contact Research Platform (MVP)</b></header><main style={{padding:16}}>{children}</main></body></html>); }

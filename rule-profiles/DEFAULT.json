@@ -1,0 +1,19 @@
+{
+  "id": "default-v1",
+  "jurisdiction": "DEFAULT",
+  "version": "1.0.0",
+  "lawful_basis_guidance": "Conservative default: business contacts only, role-based emails preferred.",
+  "individual_email_outreach": "not_advised",
+  "corporate_email_outreach": "allowed with opt-out where lawful",
+  "phone_outreach_guidance": "no phone/SMS outreach guidance",
+  "required_notices": [
+    "Purpose, source, retention date on cover sheet"
+  ],
+  "default_retention_days": 90,
+  "special_category_warning": "No sensitive-trait inference",
+  "blocked_query_types": [
+    "individual-ethnicity",
+    "stalking"
+  ],
+  "needs_review": true
+}
