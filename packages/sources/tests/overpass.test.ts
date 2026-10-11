@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { tagsForSector, buildOverpassQuery, parseOverpassResponse } from '../src/overpass';
+import { tagsForSector, buildOverpassQuery, buildBboxQuery, parseOverpassResponse } from '../src/overpass';
 
 describe('overpass connector (offline fixtures)', () => {
   it('maps sectors to OSM tags', () => {
@@ -7,10 +7,13 @@ describe('overpass connector (offline fixtures)', () => {
     expect(tagsForSector('female jewellers')[0]).toMatch(/jewelry/);
     expect(tagsForSector('unknown xyz')[0]).toMatch(/shop/);
   });
-  it('builds a bounded query with cap', () => {
-    const q = buildOverpassQuery({ south: 1, west: 2, north: 3, east: 4 }, ['["shop"="jewelry"]'], 50);
-    expect(q).toContain('1,2,3,4');
+  it('builds radius + bounded queries with cap', () => {
+    const geo = { bbox: { south: 1, west: 2, north: 3, east: 4 }, lat: 53.48, lon: -2.24 };
+    const q = buildOverpassQuery(geo, ['["shop"="jewelry"]'], 50);
+    expect(q).toContain('around:10000,53.48,-2.24');
     expect(q).toContain('out center tags 50');
+    const bq = buildBboxQuery(geo.bbox, ['["shop"="jewelry"]'], 50);
+    expect(bq).toContain('1,2,3,4');
   });
   it('parses elements, skips unnamed, never hallucinates contacts', () => {
     const out = parseOverpassResponse({
