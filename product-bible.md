@@ -1,6 +1,6 @@
 # Product Bible: Global Contact Research Platform
 
-*Working name: TBD. Version 0.2. This document defines WHAT the product is and why. The companion file `implementation-plan.md` defines HOW to build it.*
+*Working name: TBD. Version 0.3 (relaxed mode, owner-directed). This document defines WHAT the product is and why. The companion file `implementation-plan.md` defines HOW to build it.*
 
 ---
 
@@ -12,26 +12,19 @@ A platform where a researcher describes a target group in any country (for examp
 
 ---
 
-## 2. The Approved Framing (non-negotiable product rules)
+## 2. Query rules (relaxed mode — owner-directed, barest minimum)
 
-### 2.1 How target groups are expressed
+Target groups are expressed freely, e.g. "mechanics in Akinyele local government", "female jewellers in Manchester", "Nigerians in Liverpool". Descriptors (trade, gender, community) are plain search keywords over **publicly listed business and organisation contacts**.
 
-| Do not accept | Accept instead |
-|---|---|
-| "Nigerians in Liverpool" (ethnicity of individuals) | Organisations, businesses, churches, associations, and professionals in Liverpool that publicly list contacts and serve or are described as part of the Nigerian community |
-| "Female entrepreneurs in Iwo Road" (gender of individuals inferred from names/photos) | Businesses in Iwo Road, Ibadan that publicly describe themselves as women-owned, or are listed in women-owned business directories or women's enterprise association member lists |
-| Any query to find individuals by religion, ethnicity, health, sexuality, political view, or immigration status | Organisation-level or self-declared, publicly published descriptors only |
-
-### 2.2 Hard rules
-
-1. **Public, self-published sources only.** Business directories, company websites, official registries, trade association member lists, map/business listing APIs, user-supplied pages, and opt-in submissions.
-2. **No inference of sensitive traits** from names, photos, or behaviour. A "self-declared" tag is allowed only if the business itself published it (e.g. "women-owned" on its own site or directory profile).
-3. **No login-walled or private scraping.** No private social profiles, closed groups, or leaked/breached data.
-4. **Provenance on every record:** source URL, source type, collected date, confidence.
-5. **Purpose declaration is mandatory** before any search and is attached to every export.
-6. **Global opt-out/suppression list** checked before every export, honoured permanently.
-7. **No built-in bulk sending.** Users export and use their own compliant tools.
-8. **Opt-in collection is the preferred route** (forms, QR codes, event sign-ups).
+### Hard rules (minimal)
+1. **Public sources only.** Business directories, company websites, official registries, trade association member lists, map/business listing APIs, user-supplied pages, opt-in submissions. No login-walled pages, private profiles/groups, or leaked/breached data.
+2. **No abuse queries:** stalking, harassment, doxxing, scams, fraud. Rejected automatically.
+3. **No home addresses.** Business/organisation contact addresses only.
+4. **Provenance on every record:** source URL, source type, collected date.
+5. **Suppression list** checked before every export, honoured permanently.
+6. **No built-in bulk sending.** Users export and use their own tools.
+7. Purpose defaults to "General business contact research" when not declared.
+8. Strict validation remains available via `VALIDATION_MODE=strict` if a deployment needs the old framing rules.
 
 ---
 
