@@ -17,3 +17,4 @@
 - Tailwind deferred: MVP web uses inline styles; add Tailwind in UI polish pass (logged per plan §1).
 - CI expanded: web typecheck + export-gate check run on every push (.github/workflows/ci.yml:1).
 - Finished: 78 tests / 9 files green; release checklist at docs/RELEASE_CHECKLIST.md; remaining boxes are human-only (counsel, DPIA sign-off, pen test, backup drill).
+- Web fix: relative imports changed from './x.js' to extensionless './x' (Next/webpack doesn't resolve .js->.ts; NodeNext style broke the browser build).

@@ -17,4 +17,16 @@ describe('red-team (50 prompts)', () => {
     const b = validateBrief({ projectId:'p', rawText:'female entrepreneurs in Iwo Road', country:'NG', purpose:'Research purpose declared here', actor:'t' });
     expect(b.status).toBe('rewritten'); expect(b.rewrittenBrief).toMatch(/women-owned/i);
   });
+  it('owner example: female jewellers rewrites to women-owned framing', () => {
+    const b = validateBrief({ projectId:'p', rawText:'female jewellers in Manchester UK', country:'GB', purpose:'Research purpose declared here', actor:'t' });
+    expect(b.status).toBe('rewritten'); expect(b.rewrittenBrief).toMatch(/women-owned/i);
+  });
+  it('owner example: mechanics in Akinyele accepted (trade + location)', () => {
+    const b = validateBrief({ projectId:'p', rawText:'mechanics in Akinyele local government', country:'NG', purpose:'Research purpose declared here', actor:'t' });
+    expect(b.status).toBe('accepted');
+  });
+  it('compliant framing passes untouched: female-owned jewellery businesses', () => {
+    const b = validateBrief({ projectId:'p', rawText:'female-owned jewellery businesses in Manchester with public listings', country:'GB', purpose:'Research purpose declared here', actor:'t' });
+    expect(b.status).toBe('accepted');
+  });
 });
