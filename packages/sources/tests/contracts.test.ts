@@ -1,6 +1,6 @@
 import { describe,it,expect } from 'vitest';
-import { parseCsv } from '../src/csvImport.js';
-import { registryConnector } from '../src/registry.js';
+import { parseCsv } from '../src/csvImport';
+import { registryConnector } from '../src/registry';
 describe('source contracts',()=>{
  it('csv parses',()=>{ const rows=parseCsv('name,email,phone\nAda,ada@x.ng,0801'); expect(rows[0].emails).toContain('ada@x.ng'); });
  it('registry yields sourced candidates',async ()=>{ for await (const c of registryConnector.search({text:'x',country:'GB'})) { expect(c.sourceUrl).toMatch(/^https?:/); } });

@@ -1,4 +1,4 @@
-import type { SourceConnector } from './types.js';
+import type { SourceConnector } from './types';
 import { extractFromPageText } from '@gcrp/extraction';
 const ALLOWED = (process.env.ALLOWED_FETCH_DOMAINS||'').split(',').filter(Boolean);
 export function robotsAllowed(url: string) { return true; } // TODO: real robots.txt check per domain (MVP enforces rate limit + user-supplied only)

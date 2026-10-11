@@ -1,5 +1,5 @@
 import type { ContactRecord } from '@gcrp/core';
-import { normKey } from './clean.js';
+import { normKey } from './clean';
 export function dedupe(records: ContactRecord[]): ContactRecord[] {
   const byPhone = new Map<string, ContactRecord>(), byEmail = new Map<string, ContactRecord>(), byKey = new Map<string, ContactRecord>();
   const out: ContactRecord[] = [];

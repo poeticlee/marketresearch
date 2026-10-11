@@ -1,1 +1,1 @@
-export * from './ruleProfiles.js'; export * from './briefValidator.js'; export * from './exportGate.js'; export * from './suppression.js';
+export * from './ruleProfiles'; export * from './briefValidator'; export * from './exportGate'; export * from './suppression';

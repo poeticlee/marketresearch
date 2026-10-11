@@ -1,8 +1,8 @@
 import { describe,it,expect } from 'vitest';
-import { SuppressionList } from '../src/suppression.js';
-import { canExport, PLANS } from '../src/billing.js';
-import { verifyEmail } from '../src/verify.js';
-import { recordOptIn, listOptIns } from '../src/optin.js';
+import { SuppressionList } from '../src/suppression';
+import { canExport, PLANS } from '../src/billing';
+import { verifyEmail } from '../src/verify';
+import { recordOptIn, listOptIns } from '../src/optin';
 describe('release extras',()=>{
  it('suppression roundtrip',()=>{ const s=new SuppressionList('t'); s.add('A@B.co','email'); expect(s.isSuppressed('a@b.co')).toBe(true); expect(s.isSuppressed('c@d.co')).toBe(false); });
  it('billing limits',()=>{ expect(canExport('free',50)).toBe(true); expect(canExport('free',51)).toBe(false); expect(PLANS.business).toBeDefined(); });

@@ -1,7 +1,7 @@
 import { describe,it,expect } from 'vitest';
-import { Store } from '../../packages/db/src/store.js';
-import { validateBrief } from '../../packages/compliance/src/briefValidator.js';
-import { ACCEPTABLE_USE_VERSION } from '../../packages/core/src/index.js';
+import { Store } from '../../packages/db/src/store';
+import { validateBrief } from '../../packages/compliance/src/briefValidator';
+import { ACCEPTABLE_USE_VERSION } from '../../packages/core/src/index';
 describe('e2e smoke: signup->brief->review->export',()=>{
  it('happy path',()=>{
   const s=new Store(); const u=s.signup('R','r@uni.edu','pw123456','GB','Uni',ACCEPTABLE_USE_VERSION);

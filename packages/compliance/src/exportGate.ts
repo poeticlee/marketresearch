@@ -1,7 +1,7 @@
 // Single choke point for exports. No other code path may generate export files (enforced by lint rule).
 import type { ContactRecord } from '@gcrp/core';
-import { SuppressionList } from './suppression.js';
-import type { RuleProfile } from './ruleProfiles.js';
+import { SuppressionList } from './suppression';
+import type { RuleProfile } from './ruleProfiles';
 
 export interface ExportRequest { purpose: string; records: ContactRecord[]; jurisdictions: string[]; profiles: RuleProfile[]; suppression: SuppressionList; actor: string }
 export function exportGate(req: ExportRequest) {

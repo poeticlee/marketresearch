@@ -1,6 +1,6 @@
 import { describe,it,expect } from 'vitest';
-import { Store } from '../src/store.js';
-import { ACCEPTABLE_USE_VERSION } from '../../core/src/index.js';
+import { Store } from '../src/store';
+import { ACCEPTABLE_USE_VERSION } from '../../core/src/index';
 describe('phase1 acceptance',()=>{
  it('signup->project->audit',()=>{
   const s=new Store();

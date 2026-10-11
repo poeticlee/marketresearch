@@ -1,4 +1,4 @@
-import type { SourceConnector, RawCandidate } from './types.js';
+import type { SourceConnector, RawCandidate } from './types';
 export function parseCsv(text: string): RawCandidate[] {
   const lines = text.trim().split(/\r?\n/); const head = lines.shift()!.split(',').map(s=>s.trim().toLowerCase());
   return lines.map(l => {

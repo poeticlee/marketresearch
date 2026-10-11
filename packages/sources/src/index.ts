@@ -1,1 +1,1 @@
-export * from './types.js'; export * from './csvImport.js'; export * from './mapApi.js'; export * from './userUrl.js'; export * from './registry.js';
+export * from './types'; export * from './csvImport'; export * from './mapApi'; export * from './userUrl'; export * from './registry';

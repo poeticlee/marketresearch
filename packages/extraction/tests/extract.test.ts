@@ -1,7 +1,7 @@
 import { describe,it,expect } from 'vitest';
-import { extractFromPageText, assertTagsGrounded } from '../src/extract.js';
-import { dedupe } from '../src/dedupe.js';
-import { toE164 } from '../src/clean.js';
+import { extractFromPageText, assertTagsGrounded } from '../src/extract';
+import { dedupe } from '../src/dedupe';
+import { toE164 } from '../src/clean';
 describe('extraction',()=>{
  it('empty page -> no hallucination',()=>{ expect(extractFromPageText({projectId:'p',country:'NG',sourceId:'s',sourceUrl:'http://x',pageText:'Welcome to our site. No contacts here.'})).toEqual([]); });
  it('extracts + grounds tags',()=>{

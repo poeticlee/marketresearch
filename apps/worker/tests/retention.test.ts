@@ -1,7 +1,7 @@
 import { describe,it,expect } from 'vitest';
-import { Store } from '../../db/src/store.js';
-import { retentionWorker } from '../src/retention.js';
-import { ACCEPTABLE_USE_VERSION } from '../../core/src/index.js';
+import { Store } from '../../db/src/store';
+import { retentionWorker } from '../src/retention';
+import { ACCEPTABLE_USE_VERSION } from '../../core/src/index';
 describe('retention',()=>{
  it('flags expired, purges after grace',()=>{
   const { store } = (()=>{ const m=require('../../db/src/store.js') as typeof import('../../db/src/store.js'); return {store:m.store}; })();
