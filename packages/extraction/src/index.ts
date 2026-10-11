@@ -1,1 +1,1 @@
-export * from './clean'; export * from './dedupe'; export * from './extract'; export * from './confidence';
+export * from './clean'; export * from './dedupe'; export * from './extract'; export * from './confidence'; export * from './enrich';
