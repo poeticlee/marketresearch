@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { store } from '@gcrp/db';
 import { validateBrief } from '@gcrp/compliance';
-import { overpassConnector, registryConnector, mapConnector, yelpConnector } from '@gcrp/sources';
+import { overpassConnector, registryConnector, mapConnector, yelpConnector, userUrlConnector } from '@gcrp/sources';
 import { enrichFromWebsite } from '@gcrp/extraction';
 import { randomUUID } from 'crypto';
 
@@ -21,9 +21,9 @@ export async function POST(req: Request) {
     actor: 'web-search',
   });
   if (brief.status === 'rejected') return NextResponse.json({ brief }, { status: 422 });
-  const q = { text: brief.rewrittenBrief || b.rawText, country: b.country || 'NG', city: b.city, sector: b.sector };
+  const q = { text: brief.rewrittenBrief || b.rawText, country: b.country || 'NG', city: b.city, sector: b.sector, urls: Array.isArray(b.urls) ? b.urls.filter((u: unknown) => typeof u === 'string').slice(0, 20) : [] };
   const found: unknown[] = [];
-  const connectors = [overpassConnector, yelpConnector, mapConnector, registryConnector];
+  const connectors = [userUrlConnector, overpassConnector, yelpConnector, mapConnector, registryConnector];
   for (const conn of connectors) {
     try {
       for await (const c of conn.search(q)) {

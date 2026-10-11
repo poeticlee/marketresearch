@@ -3,12 +3,12 @@ import { dedupe } from '@gcrp/extraction';
 import { registryConnector, overpassConnector, yelpConnector, mapConnector } from '@gcrp/sources';
 import { randomUUID } from 'crypto';
 // Search job fans out to connectors, streams candidates as status=candidate.
-export async function runSearchJob(projectId: string, briefText: string, country: string, actor: string, opts: { city?: string; sector?: string; live?: boolean } = {}) {
+export async function runSearchJob(projectId: string, briefText: string, country: string, actor: string, opts: { city?: string; sector?: string; live?: boolean; urls?: string[] } = {}) {
   const found: any[] = [];
-  const connectors = opts.live === false ? [registryConnector] : [overpassConnector, yelpConnector, mapConnector, registryConnector];
+  const connectors = opts.live === false ? [registryConnector] : [userUrlConnector, overpassConnector, yelpConnector, mapConnector, registryConnector];
   for (const conn of connectors) {
     try {
-      for await (const c of conn.search({ text: briefText, country, city: opts.city, sector: opts.sector })) {
+      for await (const c of conn.search({ text: briefText, country, city: opts.city, sector: opts.sector, urls: opts.urls })) {
     const rec = { id: randomUUID(), projectId, entityType: c.entityType||'business', name: c.name, phones: c.phones, emails: c.emails, address: c.address, country, category: c.category, selfDeclaredTags: [], sourceId: conn.id, sourceUrl: c.sourceUrl, collectedAt: new Date().toISOString(), confidence: 0.6, status: 'candidate', retentionUntil: new Date(Date.now()+180*864e5).toISOString() };
     store.saveRecord(rec as any, actor); found.push(rec);
       }

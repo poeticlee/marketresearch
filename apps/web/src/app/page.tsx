@@ -8,6 +8,7 @@ export default function Home(){
   const [city,setCity]=useState('Manchester');
   const [country,setCountry]=useState('GB');
   const [sector,setSector]=useState('jewellers');
+  const [urls,setUrls]=useState('');
   const [enrich,setEnrich]=useState(false);
   const [hits,setHits]=useState<Hit[]>([]);
   const [status,setStatus]=useState('');
@@ -18,7 +19,7 @@ export default function Home(){
   async function search(){
     setStatus('Searching live sources…');
     setHits([]);
-    const r=await fetch('/api/search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({rawText:q,country,city,sector,enrich})});
+    const r=await fetch('/api/search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({rawText:q,country,city,sector,enrich,urls:urls.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean)})});
     const j=await r.json();
     if(!r.ok){ setStatus('Blocked: '+JSON.stringify(j.brief?.reasons)); return; }
     setHits(j.records||[]);
@@ -31,6 +32,7 @@ export default function Home(){
     <input value={country} onChange={e=>setCountry(e.target.value)} size={4} placeholder='NG'/>
     <input value={sector} onChange={e=>setSector(e.target.value)} size={12} placeholder='Sector'/>
     <label><input type='checkbox' checked={enrich} onChange={e=>setEnrich(e.target.checked)}/> enrich websites</label>
+    <br/><textarea value={urls} onChange={e=>setUrls(e.target.value)} rows={2} cols={70} placeholder='Optional: paste directory/business page URLs (one per line) — fetched directly, no key needed'/>
     <button onClick={search}>Search</button>
     <p>{status}</p>
     {hits.length>0 && (<table border={1} cellPadding={4}><thead><tr><th>Name</th><th>Phones</th><th>Emails</th><th>Address</th><th>Source</th></tr></thead>
