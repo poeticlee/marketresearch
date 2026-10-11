@@ -20,3 +20,4 @@
 - Web fix: relative imports changed from './x.js' to extensionless './x' (Next/webpack doesn't resolve .js->.ts; NodeNext style broke the browser build).
 - Relaxed mode (owner-directed): validator default now accepts demographic descriptors as plain keywords; only abuse + private sourcing blocked. Strict lists retained behind VALIDATION_MODE=strict. Bible v0.3 updated; redteam suite rewritten to relaxed expectations (10 blocked, 13 allowed).
 - Live source: OSM Nominatim + Overpass connector (keyless, ODbL attribution, rate-limited). Sector keywords map to OSM tags; worker + /api/search fan out overpass + registry; /api/import takes CSV uploads.
+- Coverage round 2: Google Places connector implemented (activates on MAP_API_KEY); website enrichment fills missing phones/emails from business homepages (polite fetch, capped); home page is now a working search UI over /api/search.
