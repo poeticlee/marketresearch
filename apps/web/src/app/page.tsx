@@ -12,18 +12,32 @@ export default function Home(){
   const [enrich,setEnrich]=useState(false);
   const [hits,setHits]=useState<Hit[]>([]);
   const [status,setStatus]=useState('');
+  const [stages,setStages]=useState('');
   async function check(){
     const r=await fetch('/api/briefs/validate',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({rawText:brief,purpose:'General business contact research',country})});
     setMsg(JSON.stringify(await r.json(),null,2));
   }
   async function search(){
     setStatus('Searching live sources…');
+    setStages('');
     setHits([]);
     const r=await fetch('/api/search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({rawText:q,country,city,sector,enrich,urls:urls.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean)})});
     const j=await r.json();
     if(!r.ok){ setStatus('Blocked: '+JSON.stringify(j.brief?.reasons)); return; }
     setHits(j.records||[]);
     setStatus(`Found ${j.count} candidates (OSM contributors where sourced from OpenStreetMap)`);
+  }
+  async function harvest(){
+    setStatus('Harvesting: location → websites → contacts…');
+    setStages('');
+    setHits([]);
+    const r=await fetch('/api/harvest',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({rawText:q,country,city,sector,urls:urls.split(/[\n,]+/).map(s=>s.trim()).filter(Boolean)})});
+    const j=await r.json();
+    if(!r.ok){ setStatus('Blocked: '+JSON.stringify(j.brief?.reasons)); return; }
+    setHits(j.records||[]);
+    const s=j.stages;
+    setStages(`Discovered ${s.discovered} → enriched ${s.enriched} → ${s.withPhone} with phone, ${s.withEmail} with email`);
+    setStatus('');
   }
   return (<div>
     <h2>Search businesses</h2>
@@ -34,7 +48,8 @@ export default function Home(){
     <label><input type='checkbox' checked={enrich} onChange={e=>setEnrich(e.target.checked)}/> enrich websites</label>
     <br/><textarea value={urls} onChange={e=>setUrls(e.target.value)} rows={2} cols={70} placeholder='Optional: paste directory/business page URLs (one per line) — fetched directly, no key needed'/>
     <button onClick={search}>Search</button>
-    <p>{status}</p>
+    <button onClick={harvest}>Harvest contacts</button>
+    <p>{status}{stages ? ' — ' + stages : ''}</p>
     {hits.length>0 && (<table border={1} cellPadding={4}><thead><tr><th>Name</th><th>Phones</th><th>Emails</th><th>Address</th><th>Source</th></tr></thead>
     <tbody>{hits.map((h,i)=>(<tr key={i}><td>{h.name}</td><td>{h.phones.join(', ')}</td><td>{h.emails.join(', ')}</td><td>{h.address}</td><td><a href={h.sourceUrl}>link</a></td></tr>))}</tbody></table>)}
     <h2>Brief check</h2>
